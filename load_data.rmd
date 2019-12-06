@@ -32,7 +32,8 @@ unique(data2$redcap_event_name)
 ```{r}
 baseline_participant_info <- data %>%
   dplyr::filter(grepl("baseline_arm", redcap_event_name)) %>%
-  janitor::remove_empty(which = "cols")
+  janitor::remove_empty(which = "cols") %>%
+  write_rds("data/output/baseline_participant_info.rds")
 
 follow_ups <- data %>%
   dplyr::filter(!grepl("baseline_arm", redcap_event_name)) %>%
